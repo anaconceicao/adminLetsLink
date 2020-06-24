@@ -23,7 +23,8 @@ export default function CustomInput(props) {
     labelProps,
     inputProps,
     error,
-    success
+    success,
+    type
   } = props;
 
   const labelClasses = classNames({
@@ -59,6 +60,7 @@ export default function CustomInput(props) {
           underline: underlineClasses
         }}
         id={id}
+        type={type}
         {...inputProps}
       />
       {error ? (
@@ -77,5 +79,6 @@ CustomInput.propTypes = {
   inputProps: PropTypes.object,
   formControlProps: PropTypes.object,
   error: PropTypes.bool,
-  success: PropTypes.bool
+  success: PropTypes.bool,
+  type: PropTypes.string
 };

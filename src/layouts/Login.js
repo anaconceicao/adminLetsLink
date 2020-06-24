@@ -17,6 +17,15 @@ import styles from "assets/jss/material-dashboard-react/layouts/rtlStyle.js";
 
 import bgImage from "assets/img/bg.png";
 
+import iconLetsLink from "assets/img/iconLetsLink.svg";
+import "../assets/css/Login.css";
+
+import GridContainer from "components/Grid/GridContainer";
+import GridItem from "components/Grid/GridItem";
+import CustomInput from "components/CustomInput/CustomInput";
+import CardFooter from "components/Card/CardFooter";
+import Button from "components/CustomButtons/Button.js";
+
 let ps;
 
 const switchRoutes = (
@@ -49,10 +58,10 @@ export default function RTL() {
   const [color, setColor] = React.useState("blue");
   const [fixedClasses, setFixedClasses] = React.useState("dropdown show");
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const handleImageClick = image => {
+  const handleImageClick = (image) => {
     setImage(image);
   };
-  const handleColorClick = color => {
+  const handleColorClick = (color) => {
     setColor(color);
   };
   const handleFixedClick = () => {
@@ -74,26 +83,56 @@ export default function RTL() {
     }
   };
   // initialize and destroy the PerfectScrollbar plugin
-  React.useEffect(() => {
-    if (navigator.platform.indexOf("Win") > -1) {
-      ps = new PerfectScrollbar(mainPanel.current, {
-        suppressScrollX: true,
-        suppressScrollY: false
-      });
-      document.body.style.overflow = "hidden";
-    }
-    window.addEventListener("resize", resizeFunction);
-    // Specify how to clean up after this effect:
-    return function cleanup() {
-      if (navigator.platform.indexOf("Win") > -1) {
-        ps.destroy();
-      }
-      window.removeEventListener("resize", resizeFunction);
-    };
-  }, [mainPanel]);
+  // React.useEffect(() => {
+  //   if (navigator.platform.indexOf("Win") > -1) {
+  //     ps = new PerfectScrollbar(mainPanel.current, {
+  //       suppressScrollX: true,
+  //       suppressScrollY: false
+  //     });
+  //     document.body.style.overflow = "hidden";
+  //   }
+  //   window.addEventListener("resize", resizeFunction);
+  //   // Specify how to clean up after this effect:
+  //   return function cleanup() {
+  //     if (navigator.platform.indexOf("Win") > -1) {
+  //       ps.destroy();
+  //     }
+  //     window.removeEventListener("resize", resizeFunction);
+  //   };
+  // }, [mainPanel]);
   return (
-    <div>
+    <div className="body-login">
+      <div className="login">
+        <div className="top-login">
+          <img src={iconLetsLink} alt="Icone Let's Link" />
+          <span>Painel Administrativo</span>
+        </div>
 
+        <div className="form-login">
+          <CustomInput
+            labelText="User"
+            id="user"
+            formControlProps={{
+              fullWidth: true,
+            }}
+          />
+
+          <CustomInput
+            labelText="Password"
+            id="password"
+            formControlProps={{
+              fullWidth: true,
+            }}
+            type="password"
+          />
+        </div>
+
+        <a className="forgot-pass">Esqueceu a senha?</a>
+
+        <CardFooter>
+          <Button color="info">Entrar</Button>
+        </CardFooter>
+      </div>
     </div>
   );
 }
